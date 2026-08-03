@@ -38,7 +38,8 @@ export default function UploadPage() {
   const [questionCount, setQuestionCount] = useState(5); // default
   const [tempCount, setTempCount] = useState("5");
   const [countError, setCountError] = useState("");
-  const API_BASE = import.meta.env.VITE_API_URL || "/api";
+  const API_BASE =
+    import.meta.env.VITE_API_URL || "https://arcane-quiz-ai.vercel.app";
 
   // Fungsi untuk membuka modal
   const handleOpenCountModal = () => {

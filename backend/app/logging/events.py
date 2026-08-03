@@ -1,0 +1,11 @@
+# Nama event standar untuk logging pipeline
+GENERATION_STARTED = "generation_started"
+PROMPT_BUILT = "prompt_built"
+PROVIDER_SELECTED = "provider_selected"
+REQUEST_SENT = "request_sent"
+RESPONSE_RECEIVED = "response_received"
+JSON_PARSED = "json_parsed"
+VALIDATION_STARTED = "validation_started"
+VALIDATION_COMPLETED = "validation_completed"
+GENERATION_COMPLETED = "generation_completed"
+GENERATION_FAILED = "generation_failed"

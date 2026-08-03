@@ -1,0 +1,51 @@
+.upload-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.upload-result .result-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.upload-result h3 {
+  margin: 0.25rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.upload-result .result-details {
+  background: #f0f8f4;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin: 0.75rem 0;
+  text-align: left;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.upload-result .result-details p {
+  margin: 0.25rem 0;
+}
+
+.upload-result .next-step {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.reset-btn {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.reset-btn:hover {
+  background-color: #0b5ed7;
+}

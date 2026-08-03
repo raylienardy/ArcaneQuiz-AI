@@ -1,0 +1,116 @@
+:root {
+  --bg-primary: #0d0d1a;
+  --bg-secondary: #1a1a2e;
+  --bg-card: rgba(20, 20, 40, 0.9);
+  --text-primary: #e0d7c6;
+  --text-secondary: #b0a89a;
+  --gold: #d4af37;
+  --gold-light: #f0e68c;
+  --accent: #6a0dad;
+  --accent-light: #9b59b6;
+  --border: #3a3a5c;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --font-heading: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
+  --font-magic: "Macondo", cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  background-image: radial-gradient(circle at 50% 0%, #1e1e3a, #0d0d1a 70%);
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-body);
+}
+
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--gold);
+}
+
+/* Di index.css tambahan */
+.upload-card,
+.question-card,
+.statistic-card,
+.metadata-card,
+.generation-session-panel,
+.question-review-workspace,
+.workspace-toolbar,
+.pagination button {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.question-card.selected {
+  border-left: 4px solid var(--gold) !important;
+  background: rgba(212, 175, 55, 0.1) !important;
+}
+
+.workspace-controls input,
+.workspace-controls select {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+.arcane-btn,
+.toolbar-btn,
+.pagination button,
+.generate-btn,
+.export-btn,
+.close-btn {
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    var(--accent-light)
+  ) !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: 0 0 10px rgba(106, 13, 173, 0.4) !important;
+  transition: all 0.2s !important;
+}
+
+.arcane-btn:hover,
+.toolbar-btn:hover,
+.pagination button:hover:not(:disabled),
+.generate-btn:hover,
+.export-btn:hover,
+.close-btn:hover {
+  box-shadow: 0 0 20px rgba(106, 13, 173, 0.7) !important;
+  transform: translateY(-1px) !important;
+}

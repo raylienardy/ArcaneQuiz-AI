@@ -7,6 +7,7 @@ from app.api.questions import router as questions_router   # tambahan
 import logging
 from app.logging.formatter import JsonFormatter
 from app.api.export import router as export_router
+from app.main import app
 
 
 settings = get_settings()
@@ -19,10 +20,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "https://arcanequiz.vercel.app",  # ganti dengan URL Vercel nanti
-    ],
+    allow_origins=["*"],  # hanya untuk testing, nanti diganti dengan domain Vercel,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

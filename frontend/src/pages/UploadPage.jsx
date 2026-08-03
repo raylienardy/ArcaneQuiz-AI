@@ -194,7 +194,11 @@ export default function UploadPage() {
       setUploadResult(data.data);
     } catch (error) {
       setUploadState("error");
-      setUploadError(error);
+      setUploadError(
+        error?.response?.data?.detail ||
+          error?.message ||
+          "Upload failed. Please try again.",
+      );
     }
   };
 

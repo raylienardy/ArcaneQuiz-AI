@@ -20,7 +20,11 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # hanya untuk testing, nanti diganti dengan domain Vercel,
+    allow_origins=[
+        "http://localhost:5173",
+        "https://arcane-quiz-2ejj9mu75-alphocados-projects.vercel.app",  # <-- origin Vercel kamu
+        "https://arcane-quiz-ai.vercel.app",  # <-- tambahkan juga domain utama nanti
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

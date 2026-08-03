@@ -38,7 +38,7 @@ export default function UploadPage() {
   const [questionCount, setQuestionCount] = useState(5); // default
   const [tempCount, setTempCount] = useState("5");
   const [countError, setCountError] = useState("");
-  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
+  const API_BASE = "/api";
 
   // Fungsi untuk membuka modal
   const handleOpenCountModal = () => {

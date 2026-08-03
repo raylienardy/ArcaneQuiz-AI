@@ -1,8 +1,0 @@
-[build]
-builder = "nixpacks"
-
-[build.config]
-startCommand = "python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT"
-
-[deploy]
-root = "backend"

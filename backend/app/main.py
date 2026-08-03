@@ -6,7 +6,7 @@ app = FastAPI(title="ArcaneQuiz AI", version="1.0.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://arcanequiz.vercel.app",
+        "https://arcane-quiz.vercel.app",
         "http://localhost:5173",
     ],
     allow_credentials=True,

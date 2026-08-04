@@ -82,7 +82,9 @@ class QuestionService:
 
             # 2. Provider info
             await self.ai_service.initialize()
-            ctx.provider = self.ai_service.provider_name
+            # Karena AIService sekarang menggunakan fallback 5 key Telkom,
+            # gunakan nama provider tetap.
+            ctx.provider = "telkom"
             log_provider_selected(ctx)
 
             # 3. Kirim request
@@ -107,6 +109,7 @@ class QuestionService:
                 raise
 
             elapsed_request = log_response_received(ctx, start_time)
+            ctx.provider = ai_response.provider
             ctx.model = ai_response.metadata.get("model", "unknown")
             if debug:
                 self.debug_info["provider"] = {

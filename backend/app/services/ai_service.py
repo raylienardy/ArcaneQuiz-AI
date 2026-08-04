@@ -1,22 +1,43 @@
 import logging
 from ..ai.models import AIRequest, AIResponse
 from ..ai.providers import get_provider_registry
-from ..config import get_settings
+from ..ai.exceptions import (
+    AIAuthenticationError,
+    AIConnectionError,
+    AIRateLimitError,
+)
 
 logger = logging.getLogger(__name__)
 
-class AIService:
-    def __init__(self):
-        settings = get_settings()
-        self.provider_name = settings.ai_provider
-        self.client = get_provider_registry().get_client(self.provider_name)
-        logger.info(f"Selected AI provider: {self.provider_name}")
 
-    async def initialize(self) -> None:
-        await self.client.initialize()
-        logger.info(f"AI provider '{self.provider_name}' initialized and ready.")
+class AIService:
+    """Service layer untuk generasi AI dengan fallback ke 5 API key Telkom LLM."""
+
+    def __init__(self):
+        # Urutan prioritas: telkom1 -> telkom2 -> ... -> telkom5
+        self.provider_names = [f"telkom{i}" for i in range(1, 6)]
 
     async def generate(self, request: AIRequest) -> AIResponse:
-        if not self.client._initialized:  # <-- gunakan flag
-            await self.initialize()
-        return await self.client.generate(request)
+        """Mencoba generate melalui semua provider secara berurutan."""
+        last_error = None
+
+        for provider_name in self.provider_names:
+            try:
+                client = get_provider_registry().get_client(provider_name)
+                await client.initialize()
+                response = await client.generate(request)
+                logger.info(f"Successfully generated using {provider_name}.")
+                return response
+            except (AIRateLimitError, AIConnectionError, AIAuthenticationError) as e:
+                logger.warning(f"Provider {provider_name} failed: {str(e)}. Trying next...")
+                last_error = e
+                continue
+            except Exception as e:
+                # Error tak terduga langsung dilempar
+                logger.error(f"Provider {provider_name} unexpected error: {str(e)}")
+                raise
+
+        # Semua provider gagal
+        raise AIRateLimitError(
+            f"All Telkom LLM API keys have been exhausted. Last error: {str(last_error)}"
+        )

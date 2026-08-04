@@ -9,3 +9,4 @@ from .exceptions import (
     ProviderNotSupportedError,
 )
 from .providers import AIProviderRegistry, get_provider_registry
+from .telkom_client import TelkomLLMClient

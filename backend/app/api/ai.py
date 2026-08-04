@@ -12,16 +12,11 @@ from ..ai.exceptions import (
 
 router = APIRouter(prefix="/ai", tags=["AI Testing"])
 
-@router.get("/test")
-async def test_gemini_connection():
-    ai_service = AIService()  # menggunakan AI_PROVIDER dari settings
 
-    try:
-        await ai_service.initialize()
-    except AIAuthenticationError as e:
-        raise HTTPException(status_code=401, detail=str(e))
-    except AIConnectionError as e:
-        raise HTTPException(status_code=500, detail=str(e))
+@router.get("/test")
+async def test_ai_connection():
+    """Uji koneksi ke AI provider yang aktif (dengan fallback)."""
+    ai_service = AIService()
 
     test_request = AIRequest(
         prompt="Reply only with the word: CONNECTED",

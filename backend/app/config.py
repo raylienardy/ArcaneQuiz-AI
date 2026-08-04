@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings
 from pydantic import ConfigDict, field_validator
 from functools import lru_cache
 
-SUPPORTED_PROVIDERS = ["gemini", "groq", "mock"]
+SUPPORTED_PROVIDERS = ["telkom1", "telkom2", "telkom3", "telkom4", "telkom5"]
 
 class Settings(BaseSettings):
     model_config = ConfigDict(env_file=".env", env_file_encoding="utf-8")
@@ -24,15 +24,19 @@ class Settings(BaseSettings):
                 f"Supported providers: {', '.join(SUPPORTED_PROVIDERS)}."
             )
         return v_lower
+      
+    telkom_api_key_1: str = ""
 
-    # Gemini
-    gemini_api_key: str = ""
-    gemini_model: str = ""
+    telkom_api_key_2: str = ""
 
-    # Groq
-    groq_api_key: str = ""
-    groq_model: str = "llama-3.1-8b-instant"
+    telkom_api_key_3: str = ""
 
+    telkom_api_key_4: str = ""
+
+    telkom_api_key_5: str = ""
+
+    telkom_model: str = "telkom-ai"
+    
     # CORS
     cors_origins: list[str] = ["http://localhost:5173"]
 

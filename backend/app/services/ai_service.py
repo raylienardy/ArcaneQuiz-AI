@@ -14,8 +14,11 @@ class AIService:
     """Service layer untuk generasi AI dengan fallback ke 5 API key Telkom LLM."""
 
     def __init__(self):
-        # Urutan prioritas: telkom1 -> telkom2 -> ... -> telkom5
         self.provider_names = [f"telkom{i}" for i in range(1, 6)]
+
+    async def initialize(self) -> None:
+        """Dummy initialize untuk kompatibilitas dengan QuestionService."""
+        pass
 
     async def generate(self, request: AIRequest) -> AIResponse:
         """Mencoba generate melalui semua provider secara berurutan."""
@@ -33,11 +36,9 @@ class AIService:
                 last_error = e
                 continue
             except Exception as e:
-                # Error tak terduga langsung dilempar
                 logger.error(f"Provider {provider_name} unexpected error: {str(e)}")
                 raise
 
-        # Semua provider gagal
         raise AIRateLimitError(
             f"All Telkom LLM API keys have been exhausted. Last error: {str(last_error)}"
         )

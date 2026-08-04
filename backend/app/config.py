@@ -11,19 +11,8 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 8000
 
-    # AI Provider (wajib)
-    ai_provider: str
-
-    @field_validator("ai_provider")
-    @classmethod
-    def validate_provider(cls, v: str) -> str:
-        v_lower = v.lower().strip()
-        if v_lower not in SUPPORTED_PROVIDERS:
-            raise ValueError(
-                f"Unsupported AI provider '{v}'. "
-                f"Supported providers: {', '.join(SUPPORTED_PROVIDERS)}."
-            )
-        return v_lower
+    # AI Provider (opsional, tidak digunakan oleh AIService baru)
+    ai_provider: str = "telkom1"  
       
     telkom_api_key_1: str = ""
 

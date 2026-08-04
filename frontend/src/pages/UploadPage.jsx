@@ -328,7 +328,15 @@ export default function UploadPage() {
           {generationState === "success" && generatedQuestions && (
             <>
               <SuccessState message="Questions successfully conjured!" />
+
+              {/* Pindahkan QuestionReviewWorkspace ke atas */}
+              <QuestionReviewWorkspace
+                questions={generatedQuestions}
+                onRegenerate={handleGenerate}
+              />
+
               <GenerationSessionPanel session={generationSession} />
+
               {devMode && (
                 <AIPipelineInspector debugData={debugData} isOpen={devMode} />
               )}
@@ -338,10 +346,6 @@ export default function UploadPage() {
                 model={generationMeta?.model}
               />
               <AIMetadataPanel metadata={generationMeta} />
-              <QuestionReviewWorkspace
-                questions={generatedQuestions}
-                onRegenerate={handleGenerate}
-              />
 
               <div className="export-area">
                 <button
